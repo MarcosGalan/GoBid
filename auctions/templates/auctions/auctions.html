@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="auctions_main container">
+
+        <div class="shadow"></div>
+
+        <div class="auctions_main__info">
+            <h1>The Best Auctions</h1>
+            <p>The best items of the market in auction, only in GoBid</p>
+        </div>
+
+    </main>
+
+
+    <section class="auctions-section container">
+
+        <div class="auctions-section__filter">
+
+            <ul>
+                <li class="active"><a class="active" href="#">All</a></li>
+                <li><a href="#">Art</a></li>
+                <li><a href="#">Assets</a></li>
+                <li><a href="#">Membership</a></li>
+                <li><a href="#">Gaming</a></li>
+            </ul>
+
+        </div>
+
+        <div class="auctions-sections__auctions">
+
+            {% for auction in object_list %}
+                <article class="auction">
+
+                    <div class="auction__img">
+                        <img src="{{ auction.item.image.url }}" alt="">
+                    </div>
+                    <div class="auction__info">
+
+                        <h3>{{ auction.item.name }}</h3>
+                        <p>{{ auction.item.description|slice:':55' }} ...</p>
+
+                        <p><span>Base Price:</span> {{ auction.base_price }}</p>
+                        <a href="{% url 'auction' pk=auction.pk %}" class="button">View Auction</a>
+                    </div>
+                </article>
+            {% endfor %}
+
+        </div>
+
+    </section>
+{% endblock %}

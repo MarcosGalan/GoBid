@@ -1,0 +1,122 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="main-edit container">
+        {{ form.errors }}
+        <form method="post" enctype="multipart/form-data" class="edit-card">
+            {% csrf_token %}
+
+            {% if auction %}
+                <div class="edit-card__header">
+
+                    <div class="edit-card__header__img">
+                        <img src="
+
+                                {% if auction.item.image %}{{ auction.item.image.url }}{% else %}{% static 'products/img/camera.png' %}{% endif %}"
+                             alt="{{ user.username }}'s photo">
+                    </div>
+                    <div class="vertical-wrapper">
+                        <h1>{{ auction.item.name }}</h1>
+                    </div>
+
+                </div>
+            {% endif %}
+
+            <div class="profile-card__body">
+                <div class="input-wrapper">
+                    <label for="{{ form.base_price.id_for_label }}">Base Price</label>
+                    <input
+                            name="{{ form.base_price.name }}"
+                            id="{{ form.base_price.id_for_label }}"
+                            type="number"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.base_price.value|default:'' }}"
+                            disabled
+                    />
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.currency.id_for_label }}">Currency</label>
+                    <input
+                            id="{{ form.currency.id_for_label }}"
+                            name="{{ form.currency.name }}"
+                            type="text"
+                            minlength="2"
+                            maxlength="3"
+                            class="input"
+                            value="{{ form.currency.value|default:'' }}"
+                            autocomplete="off"
+                            disabled/>
+
+
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="{{ form.start_date.id_for_label }}">Start Date</label>
+                    <input
+                            name="{{ form.start_date.name }}"
+                            id="{{ form.start_date.id_for_label }}"
+                            type="datetime-local"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.start_date.value|date:"Y-m-d H:i" }}"
+                            disabled
+                    />
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.end_date.id_for_label }}">End Date</label>
+                    <input
+                            name="{{ form.end_date.name }}"
+                            id="{{ form.end_date.id_for_label }}"
+                            type="datetime-local"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.end_date.value|date:"Y-m-d H:i" }}"
+                            disabled
+                    />
+                </div>
+                {% if not auction %}
+                    <div class="input-wrapper">
+                        <label for="{{ form.item.id_for_label }}">Item</label>
+                        <select
+                                id="{{ form.item.id_for_label }}"
+                                name="{{ form.item.name }}"
+                                type="text"
+                                class="input"
+                                autocomplete="off"
+                                disabled>
+                            <option>---------</option>
+
+                            {% for choice in form.item.field.choices %}
+                                <option value="{{ choice.id }}">{{ choice }}</option>
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                    <div></div>
+
+                {% endif %}
+
+                <div class="horizontal-fields">
+                    <input type="button" onclick="enableEdit()" class="action-button" id="edit-button" value="Edit">
+                    <input type="submit" class="action-button clear" id="save-button" value="Save">
+                </div>
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'products/js/userItem.js' %}"></script>
+{% endblock %}

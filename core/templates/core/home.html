@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block header %}
+    <main class="main container">
+
+        <div class="main__info">
+
+            <div class="main__info__stats">
+                <ul class="stats__list">
+                    <li>
+                        <h3>{{ users }}k</h3>
+                        <p>Users</p>
+                    </li>
+                    <li>
+                        <h3>{{ auctions }}k</h3>
+                        <p>Auctions</p>
+                    </li>
+                    <li>
+                        <h3>{{ products }}k</h3>
+                        <p>Products</p>
+                    </li>
+                </ul>
+            </div>
+            <h1>Discover,<br>
+                rare digital art<br>
+                and collect<br>
+                NFTs
+            </h1>
+            <p>The site for making your bets, win money and have fun, all in one place.</p>
+            <a class="action-button" href="{% url 'auction' pk=highest_bet.auction.pk %}">Make Your Bid</a>
+        </div>
+        <div class="main__images">
+
+            <div style="overflow: clip" class="main__images__image">
+                <img src="{{ highest_bet.auction.item.image.url }}" alt="">
+            </div>
+            <div class="main__images__data">
+                <h3>{{ highest_bet.auction.item }}</h3>
+                <div class="horizontal">
+
+                    <div class="vertical">
+                        <p>Current Bid</p>
+                        <h4>{{ highest_bet.bet_amount }}€</h4>
+                    </div>
+                    <div class="vertical">
+                        <p>End Date</p>
+                        <h4>{{ highest_bet.auction.end_date|date:"Y-m-d h:s" }}</h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}

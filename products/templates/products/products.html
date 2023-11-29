@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="products_main container">
+
+        <div class="shadow"></div>
+
+        <div class="products_main__info">
+            <h1>The Best Digital Products</h1>
+            <p>The best quality products adapted to our customers.</p>
+        </div>
+
+    </main>
+
+
+    <section class="products-section container">
+        <div style="justify-content: space-between;align-content: center;align-items: center" class="horizontal-fields">
+
+            <div class="products-section__filter">
+
+                <ul id="filterList">
+                    <li class="active"><a class="active" href="#">All</a></li>
+                    <li><a href="#">Art</a></li>
+                    <li><a href="#">Assets</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Gaming</a></li>
+                </ul>
+            </div>
+            <div style="margin: .8rem 0">
+                <label for="searchBar"></label>
+                <input placeholder="Search" id="searchBar" class="input" type="text">
+            </div>
+
+
+        </div>
+
+        <div id="productsList" class="products-sections__products">
+        </div>
+
+    </section>
+
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'products/js/products.js' %}"></script>
+{% endblock %}
+

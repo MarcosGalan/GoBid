@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="product_banner container">
+        <img src="{{ object.image.url }}" alt="">
+    </main>
+
+    <section class="product_data container">
+
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.description }}</p>
+
+    </section>
+
+    <section class="container">
+        <h2>Items</h2>
+        <div class="items-sections__items">
+
+            {% for item in object.item_set.get_queryset %}
+                <article class="item">
+                    <div class="item__img">
+                        <img src="
+
+
+
+                                {% if item.image %}{{ item.image.url }}{% else %}{% static 'products/img/camera.png' %}{% endif %}"
+                             alt="{{ user.username }}'s photo">
+                    </div>
+                    <div class="item__info">
+
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.description|slice:':55' }}...</p>
+
+                        <p><span>Price on:</span> {{ item.price }}€</p>
+
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="main_auction container">
+
+        <div class="main_auction__item-info">
+            <div class="item-info--header">
+                <div class="item-info__image">
+                    <img src="{{ auction.item.image.url }}" alt="">
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <h1>{{ auction.item.name }}</h1>
+                    <h2 id="countdown" class="countdown-text" data-end-date="{{ auction.end_date|date:"Y-m-d h:s" }}">
+                        Ends in </h2>
+                </div>
+            </div>
+            <div class="item-info--text">
+                <p>{{ auction.item.description }}</p>
+                <em>Published by <a href="#">{{ auction.item.owner }}</a></em>
+            </div>
+        </div>
+        <div class="main_auction__item-bets">
+
+            <div class="item-bets--history">
+
+                <h3>Last Bets</h3>
+                {% if last_bets %}
+                    <ul id="bets">
+                        {% for bet in last_bets %}
+                            <li class="appear"><a href="#">
+                                <div id="username" style="display: inline-block">{{ bet.user }}</div>
+                            </a> raises the bet to <span><div id="amount"
+                                                              style="display: inline-block">{{ bet.bet_amount }}</div></span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>There are no bets</p>
+                {% endif %}
+
+            </div>
+            <form method="post" class="item-bets--bet" onsubmit="return validateNewBet()" id="betForm">
+                {% csrf_token %}
+                <label for="{{ form.bet_amount.id_for_label }}">Bet</label>
+                <input class="input bet-input" type="text" id="{{ form.bet_amount.id_for_label }}"
+                       name="{{ form.bet_amount.html_name }}" value="0"><br>
+                {% for error in form.errors %}
+                    <p class="error">{{ error }}</p>
+                {% endfor %}
+                <div class="item-bets--bet--buttons">
+                    <button type="button" class="button" onclick="increaseBet(1)">+1</button>
+                    <button type="button" class="button" onclick="increaseBet(5)">+5</button>
+                    <button type="button" class="button" onclick="increaseBet(10)">+10</button>
+                    <button type="button" class="button" onclick="increaseBet(50)">+50</button>
+                </div>
+                <button id="betButton" class="action-button" type="submit" style="">
+                    Done
+                </button>
+            </form>
+
+        </div>
+
+    </main>
+
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script crossorigin src="{% static 'auctions/js/auction.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}

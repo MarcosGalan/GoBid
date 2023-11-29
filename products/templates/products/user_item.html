@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="main-edit container">
+        {{ form.errors }}
+        <form method="post" enctype="multipart/form-data" class="edit-card">
+            {% csrf_token %}
+
+            <div class="edit-card__header">
+
+                <div class="edit-card__header__img">
+                    <img src="
+                                {% if item.image %}{{ item.image.url }}{% else %}{% static 'products/img/camera.png' %}{% endif %}"
+                             alt="{{ user.username }}'s photo">
+                </div>
+                <div class="vertical-wrapper">
+                    <div class="input-wrapper">
+                        <label for="{{ form.name.id_for_label }}">Name</label>
+                        <input
+                                name="{{ form.name.name }}"
+                                id="{{ form.name.id_for_label }}"
+                                type="text"
+                                minlength="4"
+                                class="input"
+                                autocomplete="off"
+                                value="{{ form.name.value|default:'' }}"
+                                disabled
+                        />
+
+                    </div>
+                    <input
+                            id="{{ form.image.id_for_label }}"
+                            name="{{ form.image.name }}"
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            alt="profile photo input"
+                            value="{{ form.image.value }}"
+                            disabled
+                    />
+
+                </div>
+
+            </div>
+
+            <div class="profile-card__body">
+                <div class="input-wrapper input__email">
+                    <label class="access-label" for="{{ form.description.id_for_label }}">Description</label>
+                    <textarea
+                            name="{{ form.description.name }}"
+                            id="{{ form.description.id_for_label }}"
+                            type="email"
+                            class="input"
+
+                            autocomplete="off"
+                            disabled>{{ form.description.value |default:'' }}</textarea>
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.price.id_for_label }}">Price</label>
+                    <input
+                            name="{{ form.price.name }}"
+                            id="{{ form.price.id_for_label }}"
+                            type="number"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.price.value|default:'' }}"
+                            disabled
+                    />
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.product.id_for_label }}">Product</label>
+                    <select
+                            id="{{ form.product.id_for_label }}"
+                            name="{{ form.product.name }}"
+                            type="text"
+                            class="input"
+                            autocomplete="off"
+                            disabled>
+                        <option>---------</option>
+
+                        {% for choice in form.product.field.queryset %}
+                            <option value="{{ choice.id }}">{{ choice }}</option>
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <div class="horizontal-fields">
+                    <input type="button" onclick="enableEdit()" class="action-button" id="edit-button" value="Edit">
+                    <input type="submit" class="action-button clear" id="save-button" value="Save">
+                </div>
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'products/js/userItem.js' %}"></script>
+{% endblock %}

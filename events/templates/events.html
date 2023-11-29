@@ -1,0 +1,63 @@
+{% load static %}
+
+{% block header %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upcoming Event</title>
+        <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,600,700,900&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+
+    <div class="portada" id="portada">
+        <div class="header">
+            <h1 class="logotipo">Andorra Auction Forum</h1>
+            <p class="mensaje">Upcoming in-person event:</p>
+        </div>
+
+        <div id="cuenta"></div>
+
+        <div class="carousel-container">
+            <div class="carousel">
+                <img src="{% static 'img/js/images/gt.webp' %}" alt="Image 1">
+                <img src="{% static 'img/js/images/gt1.webp' %}" alt="Image 2">
+                <img src="{% static 'img/js/images/gt2.jpg' %}" alt="Image 3">
+                <img src="{% static 'img/js/images/gt3.jpg' %}" alt="Image 1">
+                <img src="{% static 'img/js/images/gto.webp' %}" alt="Image 2">
+                <img src="{% static 'img/js/images/gto1.jpg' %}" alt="Image 1">
+                <img src="{% static 'img/js/images/miura.jpg' %}" alt="Image 2">
+                <img src="{% static 'img/js/images/Ap.jpg' %}" alt="Image 1">
+                <img src="{% static 'img/js/images/joyajpg' %}" alt="Image 1">
+                <img src="{% static 'img/js/images/hourse.jpg' %}" alt="Image 2">
+            </div>
+        </div>
+
+        <div class="ver-lista-btn">
+            <a href="item_list.html">View Item List</a>
+        </div>
+
+        <div class="descripcion">
+            <p>Discover the essence of luxury and exclusivity at our prestigious auction event, Andorra Auction Forum.
+                Immerse yourself in a world where each lot tells a unique story, and every bid is a step towards
+                acquiring
+                unparalleled treasures.</p>
+        </div>
+
+    </div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.2723957333747!2d1.5215266767683806!3d42.50701897117966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a58bb6e3e741d9%3A0xaf8eb830ef96bf6f!2sUNNIC%20Andorra!5e0!3m2!1ses!2ses!4v1700688891729!5m2!1ses!2ses"
+            width="100" height="100" style="border:1;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="{% static 'countdown.js' %}"></script>
+    <script src="{% static 'carousel.js' %}"></script>
+    <script src="{% static 'events.js' %}"></script>
+
+    </body>
+    </html>
+{% endblock %}

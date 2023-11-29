@@ -1,0 +1,112 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="main-profile container">
+        {{ form.errors }}
+        <form method="post" enctype="multipart/form-data" class="profile-card">
+            {% csrf_token %}
+            <div class="profile-card__header">
+
+                <div class="profile-card__header__img">
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" alt="{{ user.username }}'s photo">
+                    {% else %}
+                        <img src="{{ user.gravatar_url }}" alt="{{ user.username }}'s photo">
+                    {% endif %}
+                </div>
+                <div class="vertical-wrapper">
+                    <div class="input-wrapper">
+                        <label for="{{ form.username.id_for_label }}">Username</label>
+                        <input
+                                name="{{ form.username.name }}"
+                                id="{{ form.username.id_for_label }}"
+                                type="text"
+                                minlength="4"
+                                class="input"
+                                autocomplete="off"
+                                value="{{ form.username.value|default:'' }}"
+                                disabled
+                        />
+
+                    </div>
+                    <input
+                            id="{{ form.photo.id_for_label }}"
+                            name="{{ form.photo.name }}"
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            alt="profile photo input"
+                            value="{{ form.photo.value }}"
+                            disabled
+                    />
+
+                </div>
+
+            </div>
+            <div class="profile-card__body">
+                <div class="input-wrapper input__email">
+                    <label class="access-label" for="{{ form.email.id_for_label }}">Email</label>
+                    <input
+                            name="{{ form.email.name }}"
+                            id="{{ form.email.id_for_label }}"
+                            type="email"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.email.value |default:'' }}"
+                            disabled
+                    />
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.first_name.id_for_label }}">Name</label>
+                    <input
+                            name="{{ form.first_name.name }}"
+                            id="{{ form.first_name.id_for_label }}"
+                            type="text"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.first_name.value|default:'' }}"
+                            disabled
+                    />
+                </div>
+                <div class="input-wrapper">
+                    <label for="{{ form.last_name.id_for_label }}">Surname</label>
+                    <input
+                            id="{{ form.last_name.id_for_label }}"
+                            name="{{ form.last_name.name }}"
+                            type="text"
+                            minlength="4"
+                            class="input"
+                            autocomplete="off"
+                            value="{{ form.last_name.value|default:'' }}"
+                            disabled
+                    />
+                </div>
+
+                <div class="data-wrap">
+                    <h3>Born Date</h3>
+                    <p>12/12/2023</p>
+                </div>
+                <div class="data-wrap">
+                    <h3>DNI</h3>
+                    <p>12345678Z</p>
+                </div>
+
+                <div class="horizontal-fields">
+                    <input type="button" onclick="enableEdit()" class="action-button" id="edit-button" value="Edit">
+                    <input type="submit" class="action-button clear" id="save-button" value="Save">
+                </div>
+
+                <a class="toggle" href="{% url 'password-change' %}">Change Password</a>
+            </div>
+        </form>
+
+    </main>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'profile/js/profile.js' %}"></script>
+{% endblock %}
+

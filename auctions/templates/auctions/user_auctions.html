@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <main class="my_items_section container">
+
+        <div class="my_items_section__header">
+
+            <h1> My Auctions </h1>
+
+            <a href="{% url 'user-auction-create' %}" class="button">+ Add Auction</a>
+        </div>
+
+        <div class="my_items_section__list">
+            {% for auction in auctions %}
+                <div class="my_items_section__list__element">
+
+                    <div class="element__image">
+                        <img src="{{ auction.item.image.url }}" alt="">
+                    </div>
+
+                    <div class="element__info">
+
+                        <h3>{{ auction.item.name }}</h3>
+                        <div class="element__info__secondary_data">
+                            <i><span>Base Price: </span>{{ auction.base_price }}€</i>
+                            <i><span>Product: </span>{{ auction.item.product }}</i>
+                        </div>
+
+                    </div>
+
+                    <a href="{% url 'user-auction-update' pk=auction.pk %}" class="button">
+                        Edit
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    </main>
+
+
+{% endblock %}

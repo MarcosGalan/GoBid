@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #141416;
+    color: #f6f6f6;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.portada {
+    width: 100%;
+    background: #141416;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: .5s ease-out all;
+}
+
+.portada.oculta {
+    transform: translateY(100%);
+}
+
+.portada .header {
+    margin-bottom: 40px; /* Reducido el margen inferior del encabezado */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.portada .header .logotipo {
+    font-size: 50px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.portada .header .mensaje {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.main {
+    max-width: 1000px;
+    margin: auto;
+    width: 90%;
+    padding: 60px 0;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: left;
+}
+
+#cuenta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 70px; /* Reducido el margen inferior del contador */
+}
+
+.simply-section {
+    background: #d96601;
+    width: 120px;
+    height: 120px;
+    margin: 0 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.simply-amount {
+    display: block;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.simply-word {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.carousel-container {
+    max-width: 800px;
+    margin: auto;
+    width: 90%;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+.ver-lista-btn {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.ver-lista-btn a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d96601;
+    color: #f6f6f6;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.ver-lista-btn a:hover {
+    background-color: #ff8100;
+}
+
+.informacion {
+    margin: 20px;
+    padding: 20px;
+    background-color: #141416;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: justify; /* Cambiado de 'center' a 'justify' para justificar el texto */
+    line-height: 1.6;
+}
+
+.informacion p {
+    margin-bottom: 15px;
+}
+
+.informacion strong {
+    font-weight: bold;
+    color: #f6f6f6;
+}
+
+.descripcion {
+    text-align: center;
+    padding: 20px;
+    background-color: #b9b9b9;
+    color: #f6f6f6;
+    margin-top: 70px;
+}
+
+/* Estilo para el iframe de Google Maps */
+iframe {
+    position: fixed;
+    bottom: 80px;
+    right: 0;
+    width: 300px;
+    height: 200px;
+    border: 0;
+}
